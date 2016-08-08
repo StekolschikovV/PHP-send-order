@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form  class="form-horizontal" id="orderForm">
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input class="form-control" type="text" name="name" placeholder="Имя*">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input class="form-control" type="email" name="email" placeholder="EMAIL*">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="checkbox product-item">
+                <label>
+                    <input type="checkbox" name="price"  data-price="100" data-product="Товар1 без количества"><span
+                        class="price">100р.</span> Товар1 без количества
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="number product-item">
+                <label>
+                    <input type="number" name="quantity" data-price="1" data-product="Товар2 с количеством" class="tovar"> шт.<span
+                        class="price">9р</span> Товар2 с количеством
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+                            <textarea class="form-control" name="notes" id="note-text" rows="5"
+                                      placeholder="Введите текст"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+                            <textarea class="form-control" name="adress" id="adress" rows="5"
+                                      placeholder="Введите почтовый адрес"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input type="submit" class="submit-btn" value="Заказать">
+        </div>
+    </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function sendForm() {
+            var url = "./order.php?" + $( "#orderForm" ).serialize();
+            $.ajax({
+                url: url,
+                response:'text',
+                success: function(e){
+                    console.log( "success: " + e);
+                },
+                error: function(){
+                    console.log( "error");
+                }
+            });
+        }
+        $('#orderForm').submit(function () {
+            sendForm();
+        });
+    });
+</script>
+</body>
+</html>
